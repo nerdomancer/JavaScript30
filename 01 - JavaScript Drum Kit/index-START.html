@@ -61,11 +61,35 @@
 
   <script>
     function playSound(e) {
-      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      playAudio(e.keyCode);
+      startPlayingAnimation(e.keyCode);
+    }
+    
+    function playAudio(keyCode) {
+      let audio = document.querySelector(`audio[data-key="${keyCode}"]`);
       if (!audio) return;
+
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    function startPlayingAnimation(keyCode){
+      let key = window.document.querySelector(`div[data-key="${keyCode}"]`)
+      if(!key) return;
+      
+      key.classList.add('playing');
+    }
+
+    function removePlayingAnimation(e) {
+      if (e.propertyName !== 'transform') return;
+      this.classList.remove('playing');
     }
 
     window.addEventListener('keydown', playSound);
+    document.querySelectorAll('.key').forEach(element => {
+      element.addEventListener('transitionend', removePlayingAnimation);
+    });;
+
   </script>
 
 
