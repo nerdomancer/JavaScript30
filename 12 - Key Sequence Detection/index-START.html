@@ -7,6 +7,19 @@
 </head>
 <body>
 <script>
+  const secretkeycombination = ['ArrowLeft', 'ArrowDown', 'ArrowLeft'];
+  const secretcode = secretkeycombination.join('');
+  const pressed = [];
+
+  window.addEventListener('keyup', (e) => {
+    pressed.push(e.key);
+    pressed.splice(-secretkeycombination.length - 1, pressed.length - secretkeycombination.length);
+    
+    if(pressed.join('').includes(secretcode)) {
+      console.log('Secret combination detected!');      
+    }
+  });
+
 </script>
 </body>
 </html>
