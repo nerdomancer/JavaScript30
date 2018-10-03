@@ -18,8 +18,8 @@
   const words = document.querySelector('.words');
   words.appendChild(p);
 
-  recognition.addEventlistener('result', e => {
-    console.log(e.results);
+  recognition.addEventListener('result', e => {
+    console.log(e);
   });
 
   recognition.start();
