@@ -46,7 +46,25 @@
       .join(''); 
   }
 
+  function setVoice() {
+    console.log('changing voice.');
+    
+    msg.voice = voices.find(voice => voice.name === voicesDropdown.value);
+    sythToggle();
+  }
+  function sythToggle(startOver = true) {
+    speechSynthesis.cancel();
+    if(startOver) {
+      speechSynthesis.speak(msg);
+    }
+    console.log(msg);
+    
+  }
+
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
+  voicesDropdown.addEventListener('change', setVoice);
+  speakButton.addEventListener('click', sythToggle);
+  stopButton.addEventListener('click', () => sythToggle(false));
   populateVoices();
 </script>
 
