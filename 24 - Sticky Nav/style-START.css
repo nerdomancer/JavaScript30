@@ -8,6 +8,12 @@ html {
 body {
   margin: 0;
 }
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow: 0 5px rgba(0, 0, 0, 0.1);
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
