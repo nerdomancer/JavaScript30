@@ -58,6 +58,27 @@
       };
     }
 
+
+    function checkSliders(e) {
+      sliderImages.forEach(sliderImage => {
+        
+        let slideInAt = window.scrollY + window.innerHeight - (sliderImage.height / 2);
+        let imageBottom = sliderImage.offsetTop + sliderImage.height;
+        let isImageHalfVisible = slideInAt > sliderImage.offsetTop;
+        let isScrolledPast = window.scrollY > imageBottom;
+        
+        if(isImageHalfVisible && !isScrolledPast) {
+          sliderImage.classList.add('active');
+        }
+        else {
+          sliderImage.classList.remove('active');
+        }
+      });  
+    }
+    
+    const sliderImages = document.querySelectorAll('.slide-in');        
+    window.addEventListener('scroll', debounce(checkSliders));
+
   </script>
 
   <style>
