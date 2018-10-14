@@ -221,6 +221,23 @@
 </style>
 
 <script>
+  const nav = document.querySelector('.top');
+  const triggers = document.querySelectorAll('.cool > li');
+  const backgroundDiv = nav.querySelector('.dropdownBackground');
+
+  function handleEnter(e) {
+    let contents = this.querySelector('.dropdown');
+    this.classList.add('trigger-enter');
+    setTimeout(() => this.classList.add('trigger-enter-active'), 150);
+  }
+
+  function handleLeave(e) {
+    console.log('Leave');
+  }
+
+  triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+  triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+
 </script>
 
 </body>
