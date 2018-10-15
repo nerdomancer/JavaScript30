@@ -229,10 +229,32 @@
     let contents = this.querySelector('.dropdown');
     this.classList.add('trigger-enter');
     setTimeout(() => this.classList.add('trigger-enter-active'), 150);
+    backgroundDiv.classList.add('open');
+
+    let dropdown = this.querySelector('.dropdown');
+    let dropdownCoords = dropdown.getBoundingClientRect();
+    console.log(dropdownCoords);
+  
+
+    let navCoords = nav.getBoundingClientRect();
+    let coords = {
+      height: dropdownCoords.height,
+      width: dropdownCoords.width,
+      top: dropdownCoords.top - navCoords.top,
+      left: dropdownCoords.left - navCoords.left
+    };
+
+    console.log(coords);
+    
+    backgroundDiv.style.setProperty('height', `${coords.height}px`);
+    backgroundDiv.style.setProperty('width', `${coords.width}px`);
+    backgroundDiv.style.setProperty('top', `${coords.top}px`);
+    backgroundDiv.style.setProperty('left', `${coords.left}px`);
   }
 
   function handleLeave(e) {
-    console.log('Leave');
+    backgroundDiv.classList.remove('open');
+    this.classList.remove('trigger-enter', 'trigger-enter-active');
   }
 
   triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
